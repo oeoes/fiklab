@@ -8,16 +8,20 @@ use App\Models\AvailableClass;
 use App\Models\Comment;
 use App\Models\Gallery;
 use App\Models\GalleryCollection;
+use App\Models\HomePage;
 use App\Models\Internship;
 use App\Models\SchedulePractice;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 
 class AppController extends Controller
 {
     public function index () {
+        $yt_prof = HomePage::first();
         $galleries = Gallery::latest()->limit(5)->get();
+        $sliders = Slider::all();
         $activities = Activity::latest()->limit(5)->get();
-        return view('app.frontend.home.index')->with(['galleries' => $galleries, 'activities' => $activities]);
+        return view('app.frontend.home.index')->with(['y_p' => $yt_prof, 'sliders' => $sliders, 'galleries' => $galleries, 'activities' => $activities]);;
     }
 
     public function profile () {

@@ -50,8 +50,8 @@
             <div class="col-md-12">
                 <div class="service-item">
                     <div class="left-content">
-                        <p class="text-justify" style="font-size: 15px; margin-top: 30px">"Kegiatan pelatihan basis data dilakukan sebagai salah satu langkah pemahaman, penerapan, serta pembelajaran mengenai perkembangan ilmu basis data."</p>
-                        <p>Waktu Pelaksanaan : 20 Juni 2020<br>Pukul : 09.00-12.00 WIB<br>Tempat Pelaksanaaan : Lab Basis Data</p>
+                        <p class="text-justify" style="font-size: 15px; margin-top: 30px">{{ $parent->description }}</p>
+                        <p>Waktu Pelaksanaan : {{ $parent->date }}<br>Pukul : {{ $parent->start_time }} - {{ $parent->end_time }} WIB<br>Tempat Pelaksanaaan : {{ $parent->venue }}</p>
                     </div>
                 </div>
             </div>

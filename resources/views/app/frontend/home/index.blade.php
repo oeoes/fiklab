@@ -3,6 +3,19 @@
 @section('title', 'FIK Laboratorium - Home')
 
 @section('custom-css')
+<!-- Template Stylesheet -->
+<link href="{{ asset('css/fe/style1.css') }}" rel="stylesheet">
+
+
+<link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+<script src="{{ asset('js/vendor/modernizr-2.8.3-respond-1.4.2.min.js') }}"></script>
+
+<style>
+    body {
+        font-family: 'Raleway';
+    }
+</style>
 <!-- CSS Libraries -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
 <link href="{{ asset('css/lib/slick/slick.css') }}" rel="stylesheet">
@@ -43,38 +56,16 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="row tn-slider">
+                    @foreach($sliders as $slider)
                     <div class="col-md-6">
                         <div class="tn-img">
-                            <img src="{{ asset('images/slider/lab6.jpeg') }}" style="height: 500px" />
+                            <img src="{{ asset('uploaded_file/gallery/sliders') }}/{{ $slider->image }}" style="height: 500px" />
                             <div class="tn-title">
-                                <a style="font-size: 30px">Selamat Datang<br>di Website FIK-Laboratorium UPN Veteran Jakarta</a>
+                                <a style="font-size: 30px">{{ $slider->title }}<br>{{ $slider->subtitle }}</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="tn-img">
-                            <img src="{{ asset('images/slider/4b.png') }}" style="height: 500px" />
-                            <div class="tn-title">
-                                <a style="font-size: 30px">Selamat Datang<br>di Website FIK-Laboratorium UPN Veteran Jakarta</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="tn-img">
-                            <img src="{{ asset('images/slider/lab9.jpeg') }}" style="height: 500px" />
-                            <div class="tn-title">
-                                <a style="font-size: 30px">Selamat Datang<br>di Website FIK-Laboratorium UPN Veteran Jakarta</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="tn-img">
-                            <img src="{{ asset('images/slider/lab13.jpeg') }}" style="height: 500px" />
-                            <div class="tn-title">
-                                <a style="font-size: 30px">Selamat Datang<br>di Website FIK-Laboratorium UPN Veteran Jakarta</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -86,7 +77,7 @@
     <div class="video-content">
         <div class="container">
             <div class="videowrapper">
-                <iframe width="854" height="550" src="https://www.youtube.com/embed/NpZgAtCTjMA?start=15" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="854" height="550" src="{{ $y_p->youtube_url }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
     </div>
@@ -101,9 +92,12 @@
                     <div class="row">
                         <div class="col-md-5 col-md-offset-1">
                             <div class="left-content">
-                                <h4 style="font-size: 30px"><i class="fa fa-university" aria-hidden="true"></i> Profil Lab</h4>
-                                <h4 style="font-size: 20px; margin-top: 30px">FIK-Laboratorium UPN Veteran Jakarta</h4>
-                                <p style="font-size: 15px">Fakultas Ilmu Komputer UPN Veteran Jakarta memiliki fasilitas berupa laboratorium komputer dan laboratorium riset.</p>
+                                @php
+                                $prof = explode('|', $y_p->profile_section)
+                                @endphp
+                                <h4 style="font-size: 30px"><i class="fa fa-university" aria-hidden="true"></i> <span>Profil Lab</span></h4>
+                                <h4 style="font-size: 20px; margin-top: 30px">{{ $prof[0] }}</h4>
+                                <p style="font-size: 15px" placeholder="Description">{{ $prof[1] }}</p>
                                 <div class="blue-button" style="margin-top: 50px">
                                     <a href="{{ route('app.profile') }}">Detail Profil</a>
                                 </div>

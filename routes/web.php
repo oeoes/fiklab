@@ -5,9 +5,11 @@ use App\Http\Controllers\Backend\ActivityController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\GalleryController;
+use App\Http\Controllers\Backend\HomePageController;
 use App\Http\Controllers\Backend\LabProfileController;
 use App\Http\Controllers\Backend\MagangController;
 use App\Http\Controllers\Backend\ScheduleController;
+use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\FrontEnd\AppController;
 
 Route::get('/', [AppController::class, 'index'])->name('app.home');
@@ -23,8 +25,13 @@ Route::get('/kontak', [ AppController::class, 'kontak'])->name('app.kontak');
 Route::post('/record', [AppController::class, 'record'])->name('app.record');
 
 Route::prefix('/app')->group(function () {
+    Route::get('/', function () {
+        return redirect()->route('profile.index');
+    });
     Route::prefix('/admin')->middleware('admin')->group(function () {
-        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/', function () {
+            return redirect()->route('profile.index');
+        });
         Route::get('/account', [DashboardController::class, 'account'])->name('account');
         Route::post('/account', [DashboardController::class, 'update_account'])->name('account.update');
         Route::get('/feedback', [DashboardController::class, 'feedback'])->name('feedback');
@@ -39,6 +46,24 @@ Route::prefix('/app')->group(function () {
             Route::get('/delete/{class}', [LabProfileController::class, 'delete'])->name('profile.delete');
         });
 
+        Route::prefix('/home-page')->group(function () {
+            Route::get('/', [HomePageController::class, 'index'])->name('home.index');
+            Route::post('/slider/add', [HomePageController::class, 'add_slider'])->name('home.slider');
+            Route::get('/slider/create', [HomePageController::class, 'add_slider_page'])->name('home.slider-page');
+            Route::get('/slider/delete/{slider}', [HomePageController::class, 'delete_slider'])->name('home.delete-slider');
+            Route::post('/video/add', [HomePageController::class, 'add_video'])->name('home.video');
+            Route::get('/video/create', [HomePageController::class, 'add_video_page'])->name('home.video-page');
+            Route::post('/profile_tab/add', [HomePageController::class, 'add_profile_tab'])->name('home.profile_tab');
+            Route::get('/profile_tab/create', [HomePageController::class, 'add_profile_tab_page'])->name('home.profile_tab-page');
+        });
+
+        Route::prefix('/users')->group(function () {
+            Route::get('/', [UserController::class, 'index'])->name('users.index');
+            Route::post('/store', [UserController::class, 'store'])->name('users.store');
+            Route::post('/update/{user}', [UserController::class, 'update'])->name('users.update');
+            Route::get('/delete/{user}', [UserController::class, 'delete'])->name('users.delete');
+        });
+
         Route::prefix('/gallery')->group(function () {
             Route::get('/', [GalleryController::class, 'index'])->name('gallery.index');
             Route::get('/view/{id}', [GalleryController::class, 'view'])->name('gallery.view');
@@ -48,6 +73,7 @@ Route::prefix('/app')->group(function () {
             Route::get('/edit/{image}', [GalleryController::class, 'edit'])->name('gallery.edit');
             Route::put('/update/{image}', [GalleryController::class, 'update'])->name('gallery.update');
             Route::get('/delete/{image}', [GalleryController::class, 'delete'])->name('gallery.delete');
+            Route::get('/delete/collection/{image}', [GalleryController::class, 'delete_from_collections'])->name('gallery.delete_from_collections');
         });
 
         Route::prefix('/activity')->group(function () {

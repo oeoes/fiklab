@@ -42,9 +42,12 @@
                         <div class="col-md-2">
                             <div class="h4">Mata Kuliah</div>
                             <ul>
-                                <li>Kriptografi</li>
-                                <li>Jaringan Komputer</li>
-                                <li>Ethical Hacking</li>
+                                @php
+                                $matkul = explode(';', $class->courses);
+                                @endphp
+                                @foreach($matkul as $m)
+                                <li>{{ $m }}</li>
+                                @endforeach
                             </ul>
                         </div>
                         <div class="col-md-3">

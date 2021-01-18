@@ -35,6 +35,8 @@
             font-family: 'Raleway';
         }
     </style>
+
+    @yield('custom-css')
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -115,6 +117,7 @@
         //         }, 1000);
         //     }
     </script>
+    @yield('custom-js')
 </body>
 
 </html>

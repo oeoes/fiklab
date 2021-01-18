@@ -23,7 +23,7 @@
                     </div>
                     <div class="card-body">
                         <form action="{{ route('gallery.store') }}" method="post" enctype="multipart/form-data">
-                        @csrf
+                            @csrf
                             <div class="form-group">
                                 <label for="">Gambar</label>
                                 <input name="image" type="file" class="form-control" required>
@@ -33,8 +33,24 @@
                                 <input name="name" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
+                                <label for="">Deskripsi Kegiatan</label>
+                                <textarea class="form-control" name="description" id="" cols="30" rows="10" required></textarea>
+                            </div>
+                            <div class="form-group">
                                 <label for="">Tanggal Kegiatan</label>
-                                <input name="date" type="date" class="form-control">
+                                <input name="date" type="date" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Jam Mulai</label>
+                                <input name="start_time" type="time" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Jam Selesai</label>
+                                <input name="end_time" type="time" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Tempat Kegiatan</label>
+                                <input name="venue" type="text" class="form-control" required>
                             </div>
                     </div>
                     <div class="card-footer">

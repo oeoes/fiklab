@@ -52,19 +52,35 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-3 mb-2">
-                                <div style="position: relative;">
+                                <div class="card" style="position: relative;">
                                     <img class="card-image-top" src="{{ asset('uploaded_file/gallery') }}/{{ $parent->image }}" alt="" style="max-width: 100%;">
+                                    <div class="card-footer">
+                                        <a href="" class="btn btn-outline-danger form-control" disabled>Hapus</a>
+                                    </div>
                                 </div>
                             </div>
                             @foreach ($collections as $collection)
                             <div class="col-md-3 mb-2">
-                                <div style="position: relative;">
+                                <div class="card" style="position: relative;">
                                     <img class="card-image-top" src="{{ asset('uploaded_file/gallery/collections') }}/{{ $collection->image }}" alt="" style="max-width: 100%;">
+                                    <div class="card-footer">
+                                        <a href="{{ route('gallery.delete_from_collections', ['image' => $collection->id]) }}" class="btn btn-outline-danger form-control">Hapus</a>
+                                    </div>
                                 </div>
                             </div>
                             @endforeach
                             {{ $collections }}
                         </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="text-justify">
+                        {{ $parent->description }}
+                    </div>
+                    <div class="mt-3">
+                        <div class="btn btn-info"><i class="fas fa-calendar"></i> {{ $parent->date }}</div>
+                        <div class="btn btn-primary"><i class="fas fa-clock"></i> {{ $parent->start_time }} s/d {{ $parent->end_time }}</div>
+                        <div class="btn btn-success"><i class="fas fa-building"></i> {{ $parent->venue }}</div>
                     </div>
                 </div>
             </div>

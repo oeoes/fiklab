@@ -14,6 +14,14 @@
 
                 <li class="nav-header">Main</li>
                 <li class="nav-item">
+                    <a href="{{ route('home.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>
+                            Homepage CMS
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('profile.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-tv"></i>
                         <p>
@@ -58,6 +66,14 @@
                         <i class="nav-icon far fa-envelope"></i>
                         <p>
                             Feedback
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('users.index') }}" class="nav-link">
+                        <i class="nav-icon far fa-user"></i>
+                        <p>
+                            Users
                         </p>
                     </a>
                 </li>

@@ -32,12 +32,12 @@
                     <div class="row">
                         <div class="h2">{{ $schedule->title }}</div>
                         <div class="col-md-12">
-                            <img src="{{ asset('uploaded_file/schedule') }}/{{ $schedule->image }}" alt="">
+                            <img src="{{ asset('uploaded_file/schedule') }}/{{ $schedule->image }}" alt="" style="max-width: 100%">
                         </div>
                     </div>
 
                     <div class="tools__container">
-                        <a href="{{ route('schedule.delete', ['schedule' => $schedule->id]) }}" class="btn btn-sm btn-outline-danger ">Delete</a>
+                        <a href="{{ route('schedule.delete', ['schedule' => $schedule->id]) }}" class="btn btn-sm btn-danger "><i class="fas fa-trash"></i></a>
                     </div>
                 </div>
             </div>

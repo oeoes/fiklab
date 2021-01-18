@@ -31,12 +31,13 @@
                 <div class="card" style="position: relative;">
                     <img class="card-image-top" src="{{ asset('uploaded_file/gallery') }}/{{ $image->image }}" alt="" style="max-width: 100%; height: 170px">
                     <div class="h5 p-2">
-                        <a style="text-decoration: none; color: black" href="{{ route('gallery.view', ['id' => $image->id]) }}">{{ $image->name }}</a>
+                        {{ $image->name }}
                     </div>
 
                     <div class="card-footer">
-                        <a href="{{ route('gallery.edit', ['image' => $image->id]) }}" class="btn btn-sm btn-outline-info ">Edit</a>
-                        <a href="{{ route('gallery.delete', ['image' => $image->id]) }}" class="btn btn-sm btn-outline-danger ">Delete</a>
+                        <a href="{{ route('gallery.edit', ['image' => $image->id]) }}" class="btn btn-sm rounded-pill pr-3 pl-3 btn-outline-info "><i class="fas fa-pen"></i></a>
+                        <a href="{{ route('gallery.delete', ['image' => $image->id]) }}" class="btn btn-sm rounded-pill pr-3 pl-3 btn-outline-danger "><i class="fas fa-trash"></i></a>
+                        <a href="{{ route('gallery.view', ['id' => $image->id]) }}" class="btn btn-sm rounded-pill pr-3 pl-3 btn-outline-primary "><i class="fas fa-eye"></i></a>
                     </div>
                 </div>
             </div>
