@@ -71,7 +71,7 @@ Route::prefix('/app')->group(function () {
             Route::post('/store', [GalleryController::class, 'store'])->name('gallery.store');
             Route::post('/store/images', [GalleryController::class, 'store_images'])->name('gallery.store_images');
             Route::get('/edit/{image}', [GalleryController::class, 'edit'])->name('gallery.edit');
-            Route::put('/update/{image}', [GalleryController::class, 'update'])->name('gallery.update');
+            Route::put('/update/{image_id}', [GalleryController::class, 'update'])->name('gallery.update');
             Route::get('/delete/{image}', [GalleryController::class, 'delete'])->name('gallery.delete');
             Route::get('/delete/collection/{image}', [GalleryController::class, 'delete_from_collections'])->name('gallery.delete_from_collections');
         });

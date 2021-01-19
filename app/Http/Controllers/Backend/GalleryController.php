@@ -75,16 +75,16 @@ class GalleryController extends Controller
         return view('app.backend.pages.gallery.edit')->with('image', $image);
     }
 
-    public function update(Request $request, Gallery $image)
+    public function update(Request $request, Gallery $image_id)
     {
         if ($request->image) {
-            File::delete(public_path('uploaded_file/gallery') . '/' . $image->image);
+            File::delete(public_path('uploaded_file/gallery') . '/' . $image_id->image);
 
             $imageName = time() . '.' . $request->image->extension();
 
             $request->image->move(public_path('uploaded_file/gallery/'), $imageName);
 
-            $image->update([
+            $image_id->update([
                 'image' => $imageName,
                 'name' => $request->name,
                 'description' => $request->description,
@@ -94,7 +94,7 @@ class GalleryController extends Controller
                 'venue' => $request->venue,
             ]);
         } else {
-            $image->update([
+            $image_id->update([
                 'name' => $request->name,
                 'description' => $request->description,
                 'date' => $request->date,

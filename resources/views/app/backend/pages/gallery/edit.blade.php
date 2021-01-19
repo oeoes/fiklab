@@ -22,20 +22,36 @@
                         Perbarui Dokumentasi Kegiatan
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('gallery.update', ['image' => $image->id]) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('gallery.update', ['image_id' => $image->id]) }}" method="post" enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
                             <div class="form-group">
-                                <label for="">Gambar</label>
+                                <label>Gambar</label>
                                 <input name="image" type="file" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="">Nama Kegiatan</label>
-                                <input name="name" value="{{ $image->name }}" type="text" class="form-control" required>
+                                <input name="name" type="text" class="form-control" required value="{{ $image->name }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Deskripsi Kegiatan</label>
+                                <textarea class="form-control" name="description" id="" cols="30" rows="10" required>{{ $image->description }}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="">Tanggal Kegiatan</label>
-                                <input name="date" value="{{ $image->date }}" type="date" class="form-control">
+                                <input name="date" type="date" class="form-control" required value="{{ $image->date }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Jam Mulai</label>
+                                <input name="start_time" type="time" class="form-control" required value="{{ $image->start_time }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Jam Selesai</label>
+                                <input name="end_time" type="time" class="form-control" required value="{{ $image->end_time }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Tempat Kegiatan</label>
+                                <input name="venue" type="text" class="form-control" required value="{{ $image->venue }}">
                             </div>
                     </div>
                     <div class="card-footer">
